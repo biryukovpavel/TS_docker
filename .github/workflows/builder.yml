@@ -27,6 +27,7 @@ jobs:
           sudo apt install -y wget
           wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-linux-arm7"
           ls -la
+          pwd
 
       - name: Docker meta
         id: meta
@@ -50,6 +51,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           platforms: linux/arm/v7
+          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}
