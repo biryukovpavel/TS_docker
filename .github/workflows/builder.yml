@@ -23,8 +23,8 @@ jobs:
 
       - name: Download TorrServer-${{ env.APP_VERSION }}
         run: |
-          apt update
-          apt install -y wget
+          sudo apt update
+          sudo apt install -y wget
           wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-linux-arm7"
 
       - name: Docker meta
