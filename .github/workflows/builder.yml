@@ -26,8 +26,6 @@ jobs:
           sudo apt update
           sudo apt install -y wget
           wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-linux-arm7"
-          ls -la
-          pwd
 
       - name: Docker meta
         id: meta

@@ -10,4 +10,4 @@ RUN chmod +x ${APPLICATION_PATH}/TorrServer
 
 EXPOSE 8090:8090
 
-ENTRYPOINT ["/opt/torrserver/TorrServer"]
+ENTRYPOINT ["/opt/torrserver/TorrServer", "--path=/opt/torrserver/db"]
