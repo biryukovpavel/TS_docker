@@ -15,7 +15,15 @@ env:
 
 jobs:
   build:
+    name: Build ${{ matrix.arch.name }} TorrServer image
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch:
+          - { "name": "linux/386", "tor-server-name": "linux-386" }
+          - { "name": "linux/amd64", "tor-server-name": "linux-amd64" }
+          - { "name": "linux/arm64/v8", "tor-server-name": "linux-arm64" }
+          - { "name": "linux/arm/v7", "tor-server-name": "linux-arm7" }
 
     steps:
       - name: Checkout
@@ -25,7 +33,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y wget
-          wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-linux-arm7"
+          wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-${{ matrix.arch.tor-server-name }} "
 
       - name: Docker meta
         id: meta
@@ -48,7 +56,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          platforms: linux/arm/v7
+          platforms: ${{ matrix.arch.name }} 
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
