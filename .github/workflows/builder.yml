@@ -33,7 +33,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y wget
-          wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-${{ matrix.arch.tor-server-name }} "
+          wget -O TorrServer "https://github.com/YouROK/TorrServer/releases/download/${{ env.APP_VERSION }}/TorrServer-${{ matrix.arch.tor-server-name }}"
 
       - name: Docker meta
         id: meta
@@ -60,5 +60,5 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}
+          cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}-${{ matrix.arch.name }} 
           cache-to: type=inline
