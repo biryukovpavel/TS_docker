@@ -71,8 +71,6 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}
-          flavor: |
-            latest=false
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -82,10 +80,12 @@ jobs:
 
       - name: Build Meta Image
         run: |
-          docker manifest create "${{ steps.meta.outputs.tags }}" \
+          docker manifest create "${{ tag }}" \
             "${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}:linux-386" \
             "${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}:linux-amd64" \
             "${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}:linux-arm64" \
             "${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}:linux-arm7"
 
-          docker manifest push "${{ steps.meta.outputs.tags }}"
+          docker manifest push "${{ tag }}"
+        with:
+          tag: ${{ steps.meta.outputs.tags }}
