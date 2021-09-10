@@ -11,7 +11,7 @@ on:
 
 env:
   DOCKER_REG: biryukovpyu
-  APP_IMAGE_NAME: TS_docker
+  APP_IMAGE_NAME: ts_docker
   APP_VERSION: MatriX.106
 
 jobs:
