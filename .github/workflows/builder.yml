@@ -18,6 +18,8 @@ jobs:
   build:
     name: Build ${{ matrix.arch.name }} TorrServer image
     runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
     strategy:
       matrix:
         arch:
@@ -71,6 +73,10 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
+
+      - name: XXXXXXXXXXX
+        run: |
+          echo "${{ needs.build.outputs.tags }}"
 
       - name: Docker meta
         id: meta
