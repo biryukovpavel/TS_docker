@@ -60,7 +60,7 @@ jobs:
           platforms: ${{ matrix.arch.name }} 
           context: .
           push: true
-          tags: ${{ env.DOCKER_REG }}${{ env.APP_IMAGE_NAME }}:${{ matrix.arch.tor-server-name }}
+          tags: ${{ env.DOCKER_REG }}/${{ env.APP_IMAGE_NAME }}:${{ matrix.arch.tor-server-name }}
           cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}/${{ matrix.arch.name }} 
           cache-to: type=inline
 
