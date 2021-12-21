@@ -12,7 +12,7 @@ on:
 env:
   DOCKER_REG: biryukovpyu
   APP_IMAGE_NAME: ts_docker
-  APP_VERSION: MatriX.109
+  APP_VERSION: MatriX.110
 
 jobs:
   build:
